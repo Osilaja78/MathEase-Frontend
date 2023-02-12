@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { Imprima, Inter } from '@next/font/google'
 import Image from 'next/image'
 import { gsap } from "gsap";
+import NavBar from '@/components/Navabr/NavBar';
+import MobileNavBar from '@/components/Navabr/mobileNavBar';
 
 export default function MyHome() {
 
@@ -46,21 +48,13 @@ export default function MyHome() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className='w-full h-[627px] bg-[url(../public/images/bg-img.png)] bg-cover bg-center overflow-hidden'>
-        <nav className=' flex justify-between text-white text-lg pt-3 items-center mx-10'>
-          <Image src="/images/logo.png" alt="logo" width="280" height="78" />
-          <div>
-            <ul className='flex gap-5'>
-              <li><a href="#">Our Products</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Signup</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div className='flex justify-between ml-10 mr-[-100px]'>
-          <div className=' mt-28 text-white max-w-2xl'>
+      <section className='w-full h-[700px] sm:h-[627px] bg-[url(../public/images/bg-img.png)] bg-cover bg-center overflow-hidden'>
+        <NavBar />
+        <MobileNavBar />
+        <div className='sm:flex justify-between ml-10 mr-[-100px]'>
+          <div className=' mt-10 sm:mt-28 text-white max-w-sm sm:max-w-2xl'>
             <div id="heroText" className=' relative overflow-hidden'>
-              <p className=' text-[40px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p className=' text-[25px] sm:text-[40px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <div id="heroText2">
               <p className=''>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                   Sunt natus numquam consequuntur dignissimos aperiam nisi 
@@ -73,13 +67,13 @@ export default function MyHome() {
         </div>
       </section>
       <section>
-        <div className=' bg-[#fffaeb] border-2 border-[#d9d9d9] rounded-[30px] max-w-[900px] p-[30px] text-center mx-auto mt-10 flex flex-col gap-y-6'>
+        <div className=' mx-4 bg-[#fffaeb] border-2 border-[#d9d9d9] rounded-[30px] sm:max-w-[900px] p-[30px] text-center sm:mx-auto mt-10 flex flex-col gap-y-6'>
           <p className=' text-[30px]'>Mathematics Input</p>
           {/* Input form */}
           <form action="">
-            <div className=' border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4'>
-              <input className='w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to calculate'/>
-              <button className=' text-white bg-orange-400 px-2 mt-2 pb-1 rounded-md text-[20px]'>=</button>
+            <div className='flex border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4'>
+              <input className=' w-full sm:w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to calculate'/>
+              <button className=' mb-3 mr-3 text-white bg-orange-400 px-2 mt-2 pb-1 sm:mb-0 sm:mr-0 rounded-md text-[20px]'>=</button>
             </div>
             <i className=' text-gray-400'>Example "solve 3x - 15 = 10"</i>
           </form>
@@ -91,34 +85,34 @@ export default function MyHome() {
       {/* HOW IT WORKS SECTION */}
       <section className='bg-gray-100 mt-20 py-4 pb-20'>
         <p className=' text-center text-[40px] m-10'>How it works in 3 easy steps</p>
-        <div className=' flex max-w-[800px] mx-auto justify-between gap-3'>
-          <div id="card1" className='flex w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
+        <div className='flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 max-w-[800px] mx-auto justify-between gap-3'>
+          <div id="card1" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-one.png" width="100" height="100"/>
             <p className=' text-[11px]'>Enter your search prompt in the input field above. Example prompt "solve 3x - 15 = 10"</p>
           </div>
-          <div id="card3" className='flex w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
+          <div id="card3" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-two.png" width="100" height="100"/>
             <p className=' text-[11px]'>Click the submit button and wait for the system to generate your answer.</p>
           </div>
-          <div id="card2" className='flex w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
+          <div id="card2" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-three.png" width="100" height="100"/>
-            <p className=' text-[11px]'>And... you're all set</p>
+            <p className=' text-[11px] ml-6'>And... you're all set</p>
           </div>
         </div>
       </section>
       {/* Natural language section */}
       <section>
-        <div className=' text-[30px] text-center mt-20'>
+        <div className='text-[20px] sm:text-[30px] text-center mt-20 mx-4'>
           <p>Do you want to ask a general knowledge question?</p>
           <p>Ask below.</p>
         </div>
-        <div className=' bg-[#fffaeb] border-2 border-[#d9d9d9] rounded-[30px] max-w-[900px] p-[30px] text-center mx-auto mt-10 flex flex-col gap-y-6'>
+        <div className='mx-4 bg-[#fffaeb] border-2 border-[#d9d9d9] rounded-[30px] max-w-[900px] p-[30px] text-center sm:mx-auto mt-10 flex flex-col gap-y-6'>
           <p className=' text-[30px]'>General Knowledge Input</p>
           {/* Input form */}
           <form action="">
-            <div className=' border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4'>
-              <input className='w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to know'/>
-              <button className=' text-white bg-orange-400 px-2 mt-2 pb-1 rounded-md text-[20px]'>=</button>
+            <div className='flex border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4'>
+              <input className='w-full sm:w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to know'/>
+              <button className=' mb-3 mr-3 text-white bg-orange-400 px-2 mt-2 pb-1 sm:mb-0 sm:mr-0 rounded-md text-[20px]'>=</button>
             </div>
             <i className=' text-gray-400'>Example "who is the current US president"</i>
           </form>
