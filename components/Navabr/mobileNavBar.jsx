@@ -17,7 +17,10 @@ export default function MobileNavBar() {
     return (
         <>
         <nav className=' flex justify-between text-white text-lg pt-3 items-center mx-10 sm:hidden'>
-            <Image src="/images/logo.png" alt="logo" width="180" height="65" />
+            <div className="flex items-center gap-4">
+                <Image src="/images/logo.png" alt="logo" width="50" height="50" />
+                <p className="text-[25px]">MATHEASE</p>
+            </div>
             {openNav ? closeIcon : hamburgerIcon}
             {openNav && navItems}
         </nav>
