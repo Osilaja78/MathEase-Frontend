@@ -2,6 +2,7 @@ import React, {useState} from "react"
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Image from 'next/image';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export default function RegistrationForm() {
 
@@ -31,9 +32,11 @@ export default function RegistrationForm() {
 
     const router = useRouter();
 
+    // main action for registration form
     const handleSubmit = async (event) => {
         setLoading(true)
         setResponse(null)
+        setError('')
         event.preventDefault();
 
         try {
@@ -44,57 +47,74 @@ export default function RegistrationForm() {
                 confirm_password: confirmPassword
             });
             setResponse(res.data);
-            setTimeout(() => {
-                router.push('/');
-            }, 2000);
             setLoading(false);
             } catch (err) {
                 setError(err);
                 setLoading(false);
             }
-        //   console.log(response)
     };
 
     let theError, loadingAnimation, theResponse
 
-    if (error) {
+    // chaeck status code if there is an error
+    if (error.response && error.response.status === 400) {
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>User with email already exists!</div>;
+    } else {
         theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>Something went wrong: {error.message}</div>;
     }
 
+    // LOADING ANIMAITON *******************
     if (loading) {
-        loadingAnimation = <div>Loading...</div>;
+        loadingAnimation = <div className=' w-max mx-auto mt-4 px-2 pb-2'>
+                              <ScaleLoader
+                                color={"#fdfdfd"}
+                                loading={loading}
+                                height={15}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>;
       }
-
+    
+    // RESPONSE MODAL ***********************
     if (response) {
-        theResponse = <div className="text-[25px] text-gray-500 text-center">{response.message ? response.message : response.error}</div>
+        if (response.message) {
+            theResponse = <div className="text-[25px] text-gray-500 text-center">{response.message ? response.message : response.error}</div>;
+            setTimeout(() => {
+                router.push('/');
+            }, 2000);
+        } else if (response.error) {
+            theResponse = <div className="text-[25px] text-red-500 text-center">{response.message ? response.message : response.error}</div>;
+        }
     }
       
 
     return(
         <>
-            <div className=" mx-6 mt-16 md:m-auto border border-gray-400 rounded-xl p-20 max-w-[550px] md:mt-16">
-                <div className="flex items-center gap-5">
+            <div className=" mx-6 mt-10 bg-gray-100 md:m-auto border border-gray-400 rounded-xl p-10 max-w-[550px] md:mt-10">
+                <div className="flex items-center gap-5 mb-4">
                     <Image src="/images/logo2.png" alt="logo" width="60" height="60" />
                     <p className="text-[25px]">MATHEASE</p>
                 </div>
                 {/* <h2 className="text-[23px]">Sign Up</h2> */}
+                {/* ***********************REGISTRATIN FORM ************************ */}
                 <form onSubmit={handleSubmit} className="flex flex-col">
-                    {error ? theError : null}
+                    {error.message ? theError : null}
                     <b>{response ? theResponse : null}</b>
                     {/* NAME INPUT */}
                     <label htmlFor="email">Name</label>
-                    <input type="text" value={name} onChange={handleNameChange} className=" border border-gray-300 rounded-md outline-none p-2"/>
+                    <input type="text" value={name} onChange={handleNameChange} className=" border border-gray-300 rounded-md mb-2 p-2"/>
                     {/* EMAIL INPUT */}
                     <label htmlFor="email">Email Address</label>
-                    <input type="email" value={email} onChange={handleEmailChange} className=" border border-gray-300 rounded-md outline-none p-2"/>
+                    <input type="email" value={email} onChange={handleEmailChange} className=" border border-gray-300 rounded-md mb-2 p-2"/>
                     {/* PASSWORD INPUT */}
                     <label htmlFor="password">Password</label>
-                    <input type="pasword" value={password} onChange={handlePasswordChange} className=" border border-gray-300 rounded-md outline-none p-2"/>
+                    <input type="password" value={password} onChange={handlePasswordChange} className=" border border-gray-300 rounded-md mb-2 p-2"/>
                     {/* CONFIRM PASSWORD INPUT */}
                     <label htmlFor="confirm-password">Confirm Password</label>
-                    <input type="pasword" value={confirmPassword} onChange={handleConfirmPasswordChange} className=" border border-gray-300 rounded-md outline-none p-2"/>
+                    <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} className=" border border-gray-300 rounded-md mb-2 p-2"/>
                     {/* SUBMIT BUTTON */}
-                    <button type="submit" className=" bg-purple-600 p-4 m-auto rounded-md mt-6 text-white">{loading ? loadingAnimation : <p>Sign Up</p>}</button>
+                    <button type="submit" className=" bg-purple-600 m-auto rounded-md mt-6 text-white">{loading ? loadingAnimation : <p className=" p-4">Sign Up</p>}</button>
                 </form>
             </div>
         </>

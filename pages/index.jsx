@@ -44,9 +44,11 @@ export default function MyHome() {
         <link rel="icon" href="/images/logo.png" />
       </Head>
       <section className='w-full h-[700px] sm:h-[627px] bg-[url(../public/images/bg-img.png)] bg-cover bg-center overflow-hidden'>
+        {/* ****************** NAVIGATIN BAR ******************** */}
         <NavBar />
         <MobileNavBar />
-        <div className='sm:flex justify-between ml-10 mr-[-100px]'>
+        {/* ****************** HERO CONTENTS ******************** */}
+        <div className='sm:flex justify-between ml-20 mr-[-100px]'>
           <div className=' mt-10 sm:mt-28 text-white max-w-sm sm:max-w-2xl'>
             <div id="heroText" className=' relative overflow-hidden'>
               <p className=' text-[25px] sm:text-[40px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>

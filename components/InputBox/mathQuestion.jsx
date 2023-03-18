@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 
 export default function MathInput() {
@@ -13,6 +14,7 @@ export default function MathInput() {
     const handleSubmit = async (event) => {
         setLoading(true)
         setError(null)
+        setResponse(null)
         event.preventDefault();
 
         try {
@@ -35,7 +37,16 @@ export default function MathInput() {
     }
 
     if (loading) {
-        loadingAnimation = <div>Loading...</div>;
+        loadingAnimation = <div className=' w-max mx-auto mt-4'>
+                              <ScaleLoader
+                                color={"#9223d8"}
+                                loading={loading}
+                                size={15}
+                                height={25}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>;
       }
 
     return (
