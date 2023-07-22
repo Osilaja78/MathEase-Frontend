@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { baseApiUrl } from '@/pages/api/hello';
 
 
 export default function MathInput() {
@@ -18,17 +19,18 @@ export default function MathInput() {
         event.preventDefault();
 
         try {
-          const res = await axios.post('http://localhost:8000/ask-math', {
+          const res = await axios.post(`${baseApiUrl}/ask-math`, {
             question: question
           });
+          console.log(res)
           setResponse(res.data);
           setLoading(false);
         } catch (err) {
+          console.log(err)
           setError(err);
           setLoading(false);
         }
       };
-      console.log(question)
 
     let theError, loadingAnimation
 

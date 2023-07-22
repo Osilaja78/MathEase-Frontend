@@ -1,7 +1,9 @@
-import {React, useState} from "react";
+import React from "react";
+import { useState } from "react";
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { ScaleLoader } from "react-spinners";
+import { baseApiUrl } from "@/pages/api/hello";
 
 export default function VerifyToken() {
 
@@ -9,37 +11,42 @@ export default function VerifyToken() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter();
-    const token = router.query;
+    const token = router.query.token;
 
     const verifyToken = async (e) => {
-        console.log(token)
-        setLoading(true)
 
         try {
-            const res = await axios.get(`http://localhost:8000/auth/verify-token?token=${token}`);
+            const res = await axios.get(`${baseApiUrl}/auth/verify-token`, {
+                params: {
+                    token: token
+                }
+            });
             setResponse(res.data);
+            setError('');
             setLoading(false)
-            console.log(token)
         } catch (err) {
             setError(err);
             setLoading(false)
         }
     }
-    verifyToken();
+
+    React.useEffect(() => {
+        setLoading(true)
+        verifyToken();
+    }, [router]);
 
     let theError, theResponse, loadingAnimation
 
     if (error) {
-        console.log(error.response)
-        theError = <div className="text-[25px] text-gray-500 text-center">{error.response}</div>;
+        theError = <div className="text-[25px] text-red-500 mx-auto pt-20 max-w-max">{error.response.statusText === "Unauthorized" ? "Invalid Token" : error.response.statusText}</div>;
     }
 
     if (response) {
-        theResponse = <div className="text-[25px] text-red-500 text-center">{response.message}</div>;
+        theResponse = <div className="text-[25px] text-green-500 pt-20 mx-auto max-w-max">{response.message}</div>;
     }
 
     if (loading) {
-        loadingAnimation = <div className=' w-max mx-auto mt-20'>
+        loadingAnimation = <div className=' w-max mx-auto pt-20'>
                               <ScaleLoader
                                 color={"#9223d8"}
                                 loading={loading}
@@ -53,7 +60,7 @@ export default function VerifyToken() {
 
     return (
         <>
-            <section>
+            <section className=" bg-gray-200 h-[100vh]">
                 {loading ? loadingAnimation : null}
                 {error ? theError : null}
                 <b>{response ? theResponse : null}</b>

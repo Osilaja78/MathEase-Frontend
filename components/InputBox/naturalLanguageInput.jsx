@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { baseApiUrl } from '@/pages/api/hello';
 
 
 export default function NaturalLanguageInput() {
@@ -15,10 +16,11 @@ export default function NaturalLanguageInput() {
     const handleSubmit = async (event) => {
         setLoading(true)
         setError(null)
+        setResponse(null)
         event.preventDefault();
 
         try {
-          const res = await axios.post('http://localhost:8000/ask', {
+          const res = await axios.post(`${baseApiUrl}/ask`, {
             question: question
           });
           setResponse(res.data);
@@ -28,7 +30,6 @@ export default function NaturalLanguageInput() {
           setLoading(false);
         }
       };
-      console.log(question)
 
     let theError, loadingAnimation
 

@@ -10,7 +10,7 @@ export default function OurProducts() {
                 <MobileNavBar />
             </section>
             <div  className=" text-[25px] max-w-max h-max mx-auto mt-36 text-center">
-                <i>Coming Soon...</i>
+                <i>Dashboard feature coming Soon...</i>
             </div>
         </>
     )

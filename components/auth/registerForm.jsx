@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Image from 'next/image';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { baseApiUrl } from "@/pages/api/hello";
 
 export default function RegistrationForm() {
 
@@ -40,7 +41,7 @@ export default function RegistrationForm() {
         event.preventDefault();
 
         try {
-            const res = await axios.post('http://localhost:8000/user', {
+            const res = await axios.post(`${baseApiUrl}/user`, {
                 name: name,
                 email: email,
                 password: password,

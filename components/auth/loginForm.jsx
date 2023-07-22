@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import axios from 'axios';
 import ScaleLoader from 'react-spinners/ScaleLoader';
+import { baseApiUrl } from "@/pages/api/hello";
 
 export default function LoginForm() {
 
@@ -32,13 +33,14 @@ export default function LoginForm() {
         }
 
         try {
-            const res = await axios.post('http://localhost:8000/auth/login', formData, {
+            const res = await axios.post(`${baseApiUrl}/auth/login`, formData, {
                 headers:{
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
+            console.log(res.data.access_token);
             setResponse(res.data);
-            // localStorage.setItem('token', response.token); // store token in local storage
+            localStorage.setItem('token', res.data.access_token); // store token in local storage
             setLoading(false);
         } catch (err) {
             setError(err);
