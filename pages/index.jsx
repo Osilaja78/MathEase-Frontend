@@ -72,7 +72,7 @@ export default function MyHome() {
         <div className='flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 max-w-[800px] mx-auto justify-between gap-3'>
           <div id="card1" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-one.png" width="100" height="100" alt="hand-one"/>
-            <p className=' text-[11px]'>Enter your search prompt in the input field above. Example prompt "solve 3x - 15 = 10"</p>
+            <p className=' text-[11px]'>Enter your search prompt in the input field above. Example prompt &quot;solve 3x - 15 = 10&quot;</p>
           </div>
           <div id="card3" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-two.png" width="100" height="100" alt="hand-two"/>
@@ -80,7 +80,7 @@ export default function MyHome() {
           </div>
           <div id="card2" className='flex mx-auto md:mx-0 w-[300px] items-center text-center bg-white rounded-lg shadow-xl pr-6 py-8 hover:shadow-2xl'>
             <Image src="/images/hands-three.png" width="100" height="100" alt="hand-three"/>
-            <p className=' text-[11px] ml-6'>And... you're all set</p>
+            <p className=' text-[11px] ml-6'>And... you&apos;re all set</p>
           </div>
         </div>
       </section>

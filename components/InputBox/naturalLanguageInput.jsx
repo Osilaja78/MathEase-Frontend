@@ -60,7 +60,7 @@ export default function NaturalLanguageInput() {
                 <input value={question} onChange={(e) => setQuestion(e.target.value)} className=' w-full sm:w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to know'/>
                 <button type='submit' className=' mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]'>=</button>
                 </div>
-                <i className=' text-gray-400'>Example "who is the current US president"</i>
+                <i className=' text-gray-400'>Example &quot;who is the current US president&quot;</i>
             </form>
             <div className='answer-div bg-white p-10 border rounded-md'>
                 <i className=' text-center text-gray-500'>Answer box</i>

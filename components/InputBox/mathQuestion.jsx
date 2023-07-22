@@ -61,7 +61,7 @@ export default function MathInput() {
                 <input value={question} onChange={(e) => setQuestion(e.target.value)} className=' w-full sm:w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to calculate'/>
                 <button type='submit' className=' mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]'>=</button>
                 </div>
-                <i className=' text-gray-400'>Example "solve 3x - 15 = 10"</i>
+                <i className=' text-gray-400'>Example &quot;solve 3x - 15 = 10&quot;</i>
             </form>
             <div className='answer-div bg-white p-10 border rounded-md'>
                 <i className=' text-center text-gray-500'>Answer box</i>
