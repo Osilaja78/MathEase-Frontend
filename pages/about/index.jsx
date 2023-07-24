@@ -38,11 +38,11 @@ export default function AboutPage() {
                 </ul>
             </p>
             <p className="pb-5 text-[18px]">
-                Whether you're a student striving for academic excellence or a
+                Whether you&apos;re a student striving for academic excellence or a
                 professional seeking precision in your work, MathEase is here to elevate
                 your math game. Ready to unleash the power of computational intelligence
                 on your math challenges? Join MathEase today and witness the future of
-                math problem-solving!"
+                math problem-solving!
             </p>
         </div>
     </>
