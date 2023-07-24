@@ -1,6 +1,7 @@
-import { useState } from "react"
-import NavLinks from "./NavLinks"
-import Image from 'next/image'
+import { useState } from "react";
+import NavLinks from "./NavLinks";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function MobileNavBar() {
 
@@ -19,7 +20,7 @@ export default function MobileNavBar() {
         <nav className=' flex justify-between text-white text-lg pt-3 items-center mx-5 sm:hidden'>
             <div className="flex items-center gap-4">
                 <Image src="/images/logo.png" alt="logo" width="50" height="50" />
-                <p className="text-[23px]">MATHEASE</p>
+                <Link href="/"><p className="text-[23px]">MATHEASE</p></Link>
             </div>
             {openNav ? closeIcon : hamburgerIcon}
             {openNav && navItems}

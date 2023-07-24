@@ -5,7 +5,10 @@ import { gsap } from "gsap";
 import NavBar from '@/components/Navabr/NavBar';
 import MobileNavBar from '@/components/Navabr/mobileNavBar';
 import MathInput from '@/components/InputBox/mathQuestion';
-import NaturalLanguagInput from '@/components/InputBox/naturalLanguageInput'
+import NaturalLanguagInput from '@/components/InputBox/naturalLanguageInput';
+import Link from 'next/link';
+import logo from '../public/images/logo.png';
+
 
 export default function MyHome() {
 
@@ -27,8 +30,8 @@ export default function MyHome() {
     function animateText() {
       const tl = gsap.timeline({defaults: {duration: 1}});
 
-      tl.fromTo(heroText, {y: 100, skewY: 10}, {y: 0, ease: "Power4.out", skewY: 0, stagger: {amount: 0.8}})
-      tl.fromTo(heroText2, {y: 100, skewY: 10}, {y: 0, ease: "Power4.out", skewY: 0, stagger: {amount: 0.3}})
+      tl.fromTo(heroText, {y: 100, skewY: 10, opacity: 0}, {y: 0, ease: "Power4.out", skewY: 0, opacity: 1, stagger: {amount: 0.8}})
+      tl.fromTo(heroText2, {y: 100, skewY: 10, opacity: 0}, {y: 0, ease: "Power4.out", skewY: 0, opacity: 1})
     }
 
     animateText()
@@ -48,19 +51,22 @@ export default function MyHome() {
         <NavBar />
         <MobileNavBar />
         {/* ****************** HERO CONTENTS ******************** */}
-        <div className='sm:flex justify-between ml-20 mr-[-100px]'>
+        <div className='sm:flex justify-between max-w-[90%] sm:max-w-[80%] m-auto'>
           <div className=' mt-10 sm:mt-28 text-white max-w-sm sm:max-w-2xl'>
             <div id="heroText" className=' relative overflow-hidden'>
-              <p className=' text-[25px] sm:text-[40px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <div id="heroText2">
-              <p className=''>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Sunt natus numquam consequuntur dignissimos aperiam nisi 
-                  enim sit illo esse, optio suscipit ut nesciunt officiis dolor 
-                  laudantium dolore molestiae aspernatur eos?</p>
+              <p className=' text-[23px] text-center sm:text-left sm:text-[40px] pb-2'>Welcome to MathEase, Your Intelligent Math Problem Solver.</p>
+              <div id="heroText2">
+                <p className='max-w-[500px] text-[14px] sm:text-[16px] text-center sm:text-left'>
+                  Harnessing the latest advancements in computational intelligence, 
+                  MathEase empowers you to tackle intricate equations, calculus problems, 
+                  algebraic expressions, and more, effortlessly.
+                  <br />
+                  Unlock the Power of Computational Intelligence!
+                </p>
               </div>
             </div>
           </div>
-          <Image id="rocket" src="/images/3d-rocket.png" alt="Rocket" width="600" height="600"/>
+          <Image className='sm:mr-[-180px]' id="rocket" src="/images/3d-rocket.png" alt="Rocket" width="600" height="600"/>
         </div>
       </section>
       <section>
@@ -88,8 +94,36 @@ export default function MyHome() {
       <section>
         <NaturalLanguagInput />
       </section>
-      <footer className='bg-[url(../public/images/footer-bg.png)] w-full h-[768px] bg-cover bg-center overflow-hidden'>
-
+      <footer className='bg-[url(../public/images/footer-bg.png)] w-full sm:h-[768px] bg-cover bg-center overflow-hidden'>
+        <div className='text-white mt-[300px] w-[80%] m-auto flex flex-col md:flex-row gap-10 justify-between'>
+          <Link href="/" className='flex gap-5 items-center'>
+            <Image src={logo} width={80}/>
+            <h1 className="text-[30px] sm:text-[40px]">MATHEASE</h1>
+          </Link>
+          <div>
+            <p className='text-[25px] py-5'>Navigate.</p>
+            <ul>
+              <li><Link href="/products">Our Products.</Link></li>
+              <li><Link href="/about">About.</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className='text-[25px] py-5'>Legal.</p>
+            <ul>
+              <li><Link href="/products">Terms & Conditions</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className='text-[25px] py-5'>Contact Us.</p>
+            <ul>
+              <li><Link href="/products">Phone +234-90-000-0000</Link></li>
+              <li><Link href="/about">Email: mathease.org@email.com</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className='sm:relative sm:top-56 my-5 sm:my-0 text-white bg-purple-800 rounded-2xl max-w-max m-auto p-5'>
+          Made with ❤ by Hameed Osilaja.
+        </div>
       </footer>
     </>
   )
