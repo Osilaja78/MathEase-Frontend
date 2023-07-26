@@ -28,15 +28,15 @@ export default function AboutPage() {
             </p>
             <p className="pb-5 text-[18px]">
                 Simplify your math journey with MathEase:
-                <ul className="list-disc pl-10">
-                    <li>Instantly solve any math question with just a single click.</li>
-                    <li>Experience real-time explanations and step-by-step solutions.</li>
-                    <li>
-                        Seamlessly integrate with your favorite learning tools and
-                        platforms.
-                    </li>
-                </ul>
             </p>
+            <ul className="list-disc pl-10">
+                <li>Instantly solve any math question with just a single click.</li>
+                <li>Experience real-time explanations and step-by-step solutions.</li>
+                <li>
+                    Seamlessly integrate with your favorite learning tools and
+                    platforms.
+                </li>
+            </ul>
             <p className="pb-5 text-[18px]">
                 Whether you&apos;re a student striving for academic excellence or a
                 professional seeking precision in your work, MathEase is here to elevate

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import MathMLRenderer from "../mathMLRender";
 import { baseApiUrl } from "@/pages/api/hello";
+import { AuthContext } from "../auth/AuthContext";
 
 export default function MathInput() {
 	// For asking questions
@@ -10,6 +11,8 @@ export default function MathInput() {
 	const [question, setQuestion] = useState("");
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(null);
+	
+	const { accessToken, logout } = useContext(AuthContext);
 
 	const handleSubmit = async (event) => {
 		setLoading(true);
@@ -18,15 +21,43 @@ export default function MathInput() {
 		event.preventDefault();
 
 		try {
-			const res = await axios.post(`${baseApiUrl}/ask-math`, {
-				question: question,
-			});
-			console.log(res);
-			setResponse(res.data);
+			if (accessToken) {
+				console.log("Access toekn present........", accessToken);
+				const res = await axios.post(`${baseApiUrl}/ask-math`, {
+					question: question,
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				});
+				setResponse(res.data);
+
+				const formData = {
+					question: question,
+					answer: res.data.short_answer
+				}
+				console.log("Sending question history...", formData);
+				const qres = await axios.post(`${baseApiUrl}/question-history`, formData, {
+					headers: {
+						Authorization: `Bearer ${accessToken}`
+					}
+				});
+				console.log("q responst ->", qres);
+				console.log("Question history sent successfully.......");
+			} else {
+				const res = await axios.post(`${baseApiUrl}/ask-math`, {
+					question: question,
+				});
+				console.log(res);
+				setResponse(res.data);
+			}
+			
 			setLoading(false);
 		} catch (err) {
 			console.log(err);
 			setError(err);
+			if (err.response && err.response.status === 403) {
+				logout();
+			}
 			setLoading(false);
 		}
 	};
@@ -36,7 +67,7 @@ export default function MathInput() {
 	if (error) {
 		theError = (
 		<div className="bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto">
-			Something went wrong: {error.message}
+			Something went wrong: {error.response.status === 403 ? "Token has expired! Please login to continue saving you rquestion history" : error.message}
 		</div>
 		);
 	}

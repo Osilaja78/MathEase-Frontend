@@ -8,12 +8,13 @@ import MathInput from '@/components/InputBox/mathQuestion';
 import NaturalLanguagInput from '@/components/InputBox/naturalLanguageInput';
 import Link from 'next/link';
 import logo from '../public/images/logo.png';
+import { useEffect } from 'react';
 
 
 export default function MyHome() {
 
   // to prevent 'document' not defined error
-  if (typeof document !== 'undefined') {
+  useEffect(() => {
     let rocket = document.querySelector('#rocket')
     let heroText = document.querySelector('#heroText > p')
     let heroText2 = document.querySelector('#heroText2 > p')
@@ -36,7 +37,7 @@ export default function MyHome() {
 
     animateText()
     aniateRocket()
-  }
+  }, []);
 
   return (
     <>
@@ -97,7 +98,7 @@ export default function MyHome() {
       <footer className='bg-[url(../public/images/footer-bg.png)] w-full sm:h-[768px] bg-cover bg-center overflow-hidden'>
         <div className='text-white mt-[300px] w-[80%] m-auto flex flex-col md:flex-row gap-10 justify-between'>
           <Link href="/" className='flex gap-5 items-center'>
-            <Image src={logo} width={80}/>
+            <Image src={logo} width={80} alt='logo'/>
             <h1 className="text-[30px] sm:text-[40px]">MATHEASE</h1>
           </Link>
           <div>

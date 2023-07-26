@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { baseApiUrl } from "@/pages/api/hello";
+import { useRouter } from "next/router";
 
 export default function LoginForm() {
 
@@ -12,6 +13,8 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const router = useRouter();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -38,9 +41,11 @@ export default function LoginForm() {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            console.log(res.data.access_token);
-            setResponse(res.data);
-            localStorage.setItem('token', res.data.access_token); // store token in local storage
+
+            if (res.status === 200) {
+                setResponse("Sign In sucessful! You'll be redirected shortly.");
+            }
+            localStorage.setItem('accessToken', res.data.access_token); // store token in local storage
             setLoading(false);
         } catch (err) {
             setError(err);
@@ -51,10 +56,6 @@ export default function LoginForm() {
 
     let theError, loadingAnimation, theResponse
 
-    // if (error) {
-    //     console.log(error.response)
-    //     theError = <div className="text-[25px] text-gray-500 text-center">{error.response}</div>;
-    // }
     if (error.response && error.response.status === 404) {
         theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>User with email does not exist!</div>;
     } else if (error.response && error.response.status === 401) {
@@ -78,7 +79,10 @@ export default function LoginForm() {
 
     // RESPONSE MODAL ***********************
     if (response) {
-        theResponse = <div className="text-[25px] text-red-500 text-center">{response.message}</div>;
+        theResponse = <div className="bg-green-200 p-8 border border-green-700 rounded-md text-green-800 w-max m-auto font-normal mb-5">{response}</div>;
+        setTimeout(() => {
+            router.push('/');
+        }, 2000);
     }
     // if (response) {
     //     if (response.message) {
@@ -108,9 +112,9 @@ export default function LoginForm() {
                     <input type="text" value={email} onChange={handleEmailChange} className=" border border-gray-300 rounded-md outline-none p-2 mb-3"/>
                     {/* PASSWORD INPUT */}
                     <label htmlFor="password">Password</label>
-                    <input type="pasword" value={password} onChange={handlePasswordChange} className=" border border-gray-300 rounded-md outline-none p-2 mb-3"/>
+                    <input type="password" value={password} onChange={handlePasswordChange} className=" border border-gray-300 rounded-md outline-none p-2 mb-3"/>
                     <p>Frogot Password?</p>
-                    <button type="submit" className=" bg-purple-600 m-auto rounded-md mt-6 text-white">{loading ? loadingAnimation : <p className=" p-4">Login</p>}</button>
+                    <button type="submit" className=" bg-purple-600 m-auto rounded-md mt-6 text-white">{loading ? loadingAnimation : <p className=" px-5 py-3">Login</p>}</button>
                 </form>
             </div>
         </>

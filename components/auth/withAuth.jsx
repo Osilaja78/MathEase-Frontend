@@ -5,7 +5,7 @@ const withAuth = (Component) => {
     const Auth = (props) => {
         const router = useRouter();
         useEffect(() => {
-            const token = localStorage.getItem('token')
+            const token = localStorage.getItem('accessToken');
             if (!token) {
                 router.push("/login")
             }
