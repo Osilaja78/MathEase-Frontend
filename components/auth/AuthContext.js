@@ -6,8 +6,8 @@ const AuthProvider = ({ children }) => {
 
     const [accessToken, setAccessToken] = useState(null);
 
-    let localToken;
     useEffect(() => {
+        let localToken;
         localToken = window.localStorage.getItem("accessToken");
         setAccessToken(localToken);
     }, [])
