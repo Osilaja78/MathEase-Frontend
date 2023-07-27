@@ -18,7 +18,9 @@ export default function QuestionHistory() {
 
     if (!accessToken) {
         logout();
-        router.push("/auth/login");
+        if (typeof window !== "undefined") {
+            router.push("/auth/login");
+        }
     }
 
     useEffect(() => {
