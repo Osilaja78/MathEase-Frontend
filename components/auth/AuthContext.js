@@ -8,12 +8,16 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         let localToken;
-        localToken = window.localStorage.getItem("accessToken");
+        if (typeof window !== "undefined") {
+            localToken = window.localStorage.getItem("accessToken");
+        }
         setAccessToken(localToken);
     }, [])
 
     const logout = () => {
-        window.localStorage.removeItem("accessToken");
+        if (typeof window !== "undefined") {
+            window.localStorage.removeItem("accessToken");
+        }
     }
 
     const authValues = {
