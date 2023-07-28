@@ -16,7 +16,7 @@ export default function AboutPage() {
                 Welcome to MathEase, Your Intelligent Math Problem Solver
             </h1>
             <div className="flex flex-col md:flex-row items-center gap-8 justify-around mb-20">
-                <Image src={MathOne} width={400} alt="math-one-illustration"/>
+                <Image src={MathOne} width={400} alt="math-one-illustration" className="px-10 sm:px-0"/>
                 <div className="max-w-[500px]">
                     <h2 className="pb-5 text-[22px]">Unlock the Power of Computational Intelligence!</h2>
                     <p className="pb-5 text-[18px]">

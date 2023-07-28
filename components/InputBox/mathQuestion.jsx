@@ -24,7 +24,6 @@ export default function MathInput() {
 
 		try {
 			if (accessToken) {
-				console.log("Access toekn present........", accessToken);
 				const res = await axios.post(`${baseApiUrl}/ask-math`, {
 					question: question,
 					headers: {
@@ -37,14 +36,13 @@ export default function MathInput() {
 					question: question,
 					answer: res.data.short_answer
 				}
-				console.log("Sending question history...", formData);
+
 				const qres = await axios.post(`${baseApiUrl}/question-history`, formData, {
 					headers: {
 						Authorization: `Bearer ${accessToken}`
 					}
 				});
-				console.log("q responst ->", qres);
-				console.log("Question history sent successfully.......");
+
 			} else {
 				const res = await axios.post(`${baseApiUrl}/ask-math`, {
 					question: question,
@@ -117,7 +115,7 @@ export default function MathInput() {
 		<div className="answer-div bg-white p-10 border rounded-md">
 			<i className=" text-center text-gray-500">Answer box</i>
 			{error ? theError : null}
-			<div className=" text-left text-[20px]">
+			<div className=" text-left text-[20px] overflow-x-auto">
 			{/* {response ? <pre><p>Short Answer: </p>{JSON.stringify(response.short_answer, null, 2)}</pre> : loadingAnimation}
 					<ul>
 					{response ? <p className='mt-4'>Long Answer: </p> : null}
@@ -127,12 +125,12 @@ export default function MathInput() {
 					</ul> */}
 			{response ? (
 				<ul>
-					<li className="flex gap-10">
-						<p className="text-[12px] sm:text-[20px]">Short answer:</p>
+					<li className="flex gap-5 mt-5">
+						<p>Short answer:</p>
 						<MathMLRenderer mathML={response.short_answer} />
 					</li>
 					<li className="mt-5">
-						<p className="py-6 text-[12px] sm:text-[20px]">Step-By-Step Solution:</p>
+						<p>Step-By-Step Solution:</p>
 						<MathMLRenderer mathML={response.long_answer} />
 					</li>
 				</ul>

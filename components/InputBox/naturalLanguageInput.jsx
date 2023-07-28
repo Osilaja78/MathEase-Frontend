@@ -65,7 +65,7 @@ export default function NaturalLanguageInput() {
             <div className='answer-div bg-white p-10 border rounded-md'>
                 <i className=' text-center text-gray-500'>Answer box</i>
                 {error ? theError : null}
-                <div className=' text-left text-[20px]'>
+                <div className=' text-left text-[20px] overflow-x-auto'>
                   {response ? <pre><p>Answer: </p>{JSON.stringify(response.answer, null, 2)}</pre> : loadingAnimation}
                 </div>
             </div>
