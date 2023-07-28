@@ -9,13 +9,16 @@ export default function VerifyToken() {
 
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [trial, setTrial] = useState(0);
     const [error, setError] = useState('');
     const router = useRouter();
     const token = router.query.token;
 
     const verifyToken = async (e) => {
-
+        setLoading(true);
+        setTrial(1);
         try {
+            console.log(token);
             const res = await axios.get(`${baseApiUrl}/auth/verify-token`, {
                 params: {
                     token: token
@@ -23,7 +26,10 @@ export default function VerifyToken() {
             });
             setResponse(res.data);
             setError('');
-            setLoading(false)
+            setLoading(false);
+            setTimeout(() => {
+                router.push('/auth/login');
+            }, 2000);
         } catch (err) {
             setError(err);
             setLoading(false)
@@ -37,7 +43,7 @@ export default function VerifyToken() {
 
     let theError, theResponse, loadingAnimation
 
-    if (error) {
+    if (error && trial > 1) {
         theError = <div className="text-[25px] text-red-500 mx-auto pt-20 max-w-max">{error.response.statusText === "Unauthorized" ? "Invalid Token" : error.response.statusText}</div>;
     }
 

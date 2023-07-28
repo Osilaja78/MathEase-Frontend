@@ -4,6 +4,8 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import MathMLRenderer from "../mathMLRender";
 import { baseApiUrl } from "@/pages/api/hello";
 import { AuthContext } from "../auth/AuthContext";
+import equalTo from "../../public/equal-to.svg";
+import Image from "next/image";
 
 export default function MathInput() {
 	// For asking questions
@@ -67,7 +69,7 @@ export default function MathInput() {
 	if (error) {
 		theError = (
 		<div className="bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto">
-			Something went wrong: {error.response.status === 403 ? "Token has expired! Please login to continue saving you rquestion history" : error.message}
+			Something went wrong: {error.response && error.response.status === 403 ? "Token has expired! Please login to continue saving you rquestion history" : error.message}
 		</div>
 		);
 	}
@@ -105,7 +107,7 @@ export default function MathInput() {
 				type="submit"
 				className=" mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]"
 			>
-				=
+			<Image src={equalTo} alt="equal-to"/>
 			</button>
 			</div>
 			<i className=" text-gray-400">
