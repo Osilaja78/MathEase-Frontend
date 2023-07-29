@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { baseApiUrl } from '@/pages/api/hello';
+import equalTo from "../../public/equal-to.svg";
+import Image from "next/image";
 
 
 export default function NaturalLanguageInput() {
@@ -58,15 +60,22 @@ export default function NaturalLanguageInput() {
             <form onSubmit={handleSubmit}>
                 <div className='flex border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4'>
                 <input value={question} onChange={(e) => setQuestion(e.target.value)} className=' w-full sm:w-[400px] p-4 outline-none' type="text" placeholder='Enter what you want to know'/>
-                <button type='submit' className=' mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]'>=</button>
+                <button type='submit' className=' mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]'>
+                  <Image src={equalTo} alt='equal-to'/>
+                </button>
                 </div>
                 <i className=' text-gray-400'>Example &quot;who is the current US president&quot;</i>
             </form>
-            <div className='answer-div bg-white p-10 border rounded-md'>
+            <div className='answer-div bg-white py-10 px-2 border rounded-md'>
                 <i className=' text-center text-gray-500'>Answer box</i>
                 {error ? theError : null}
                 <div className=' text-left text-[20px] overflow-x-auto'>
-                  {response ? <pre><p>Answer: </p>{JSON.stringify(response.answer, null, 2)}</pre> : loadingAnimation}
+                  {response ?
+                    <div className="mt-5 border rounded-md"> 
+                      <p className="bg-gray-100 p-3 rounded-t-md">Result</p>
+                      <p className='p-4 text-[18px]'>{JSON.stringify(response.answer, null, 2)}</p>
+                    </div>
+                    : loadingAnimation}
                 </div>
             </div>
           </div>

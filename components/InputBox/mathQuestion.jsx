@@ -112,10 +112,10 @@ export default function MathInput() {
 			Example &quot;solve 3x - 15 = 10&quot;
 			</i>
 		</form>
-		<div className="answer-div bg-white p-10 border rounded-md">
+		<div className="answer-div bg-white py-10 px-2 border rounded-md">
 			<i className=" text-center text-gray-500">Answer box</i>
 			{error ? theError : null}
-			<div className=" text-left text-[20px] overflow-x-auto">
+			<div className=" text-left text-[20px] overflow-x-auto overflow-y-hidden">
 			{/* {response ? <pre><p>Short Answer: </p>{JSON.stringify(response.short_answer, null, 2)}</pre> : loadingAnimation}
 					<ul>
 					{response ? <p className='mt-4'>Long Answer: </p> : null}
@@ -125,12 +125,12 @@ export default function MathInput() {
 					</ul> */}
 			{response ? (
 				<ul>
-					<li className="flex gap-5 mt-5">
-						<p>Short answer:</p>
+					<li className="mt-5 sm:border sm:rounded-md">
+						<p className="bg-gray-100 p-3 rounded-t-md">Result</p>
 						<MathMLRenderer mathML={response.short_answer} />
 					</li>
-					<li className="mt-5">
-						<p>Step-By-Step Solution:</p>
+					<li className="mt-5 sm:border sm:rounded-md">
+						<p className="bg-gray-100 p-3 rounded-t-md">Step-By-Step Solution</p>
 						<MathMLRenderer mathML={response.long_answer} />
 					</li>
 				</ul>
