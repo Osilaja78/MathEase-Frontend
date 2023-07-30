@@ -58,10 +58,6 @@ export default function MyHome() {
               <p className=' text-[23px] text-center sm:text-left sm:text-[40px] pb-2'>Welcome to MathEase, Your Intelligent Math Problem Solver.</p>
               <div id="heroText2">
                 <p className='max-w-[500px] text-[14px] sm:text-[16px] text-center sm:text-left'>
-                  Harnessing the latest advancements in computational intelligence, 
-                  MathEase empowers you to tackle intricate equations, calculus problems, 
-                  algebraic expressions, and more, effortlessly.
-                  <br />
                   Unlock the Power of Computational Intelligence!
                 </p>
               </div>
