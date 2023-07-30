@@ -57,13 +57,13 @@ export default function MyHome() {
             <div id="heroText" className=' relative overflow-hidden'>
               <p className=' text-[23px] text-center sm:text-left sm:text-[40px] pb-2'>Welcome to MathEase, Your Intelligent Math Problem Solver.</p>
               <div id="heroText2">
-                <p className='max-w-[500px] text-[14px] sm:text-[16px] text-center sm:text-left'>
+                <p className='max-w-[500px] text-[20px] text-center sm:text-left'>
                   Unlock the Power of Computational Intelligence!
                 </p>
               </div>
             </div>
           </div>
-          <Image className='sm:mr-[-180px]' id="rocket" src="/images/3d-rocket.png" alt="Rocket" width="600" height="600"/>
+          <Image className='sm:mr-[-180px] mt-10 sm:mt-0' id="rocket" src="/images/3d-rocket.png" alt="Rocket" width="600" height="600"/>
         </div>
       </section>
       <section>
