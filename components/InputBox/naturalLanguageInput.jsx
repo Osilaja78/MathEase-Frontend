@@ -36,7 +36,7 @@ export default function NaturalLanguageInput() {
     let theError, loadingAnimation
 
     if (error) {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>Something went wrong: {error.message}</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>Something went wrong: {error.message}</div>;
     }
 
     if (loading) {

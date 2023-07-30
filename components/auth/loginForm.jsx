@@ -57,11 +57,11 @@ export default function LoginForm() {
     let theError, loadingAnimation, theResponse
 
     if (error.response && error.response.status === 404) {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>User with email does not exist!</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>User with email does not exist!</div>;
     } else if (error.response && error.response.status === 401) {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>Email or password incorrect!</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>Email or password incorrect!</div>;
     } else {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>Something went wrong: {error.message}</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>Something went wrong: {error.message}</div>;
     }
 
     // LOADING ANIMAITON *******************
@@ -79,21 +79,11 @@ export default function LoginForm() {
 
     // RESPONSE MODAL ***********************
     if (response) {
-        theResponse = <div className="bg-green-200 p-8 border border-green-700 rounded-md text-green-800 w-max m-auto font-normal mb-5">{response}</div>;
+        theResponse = <div className="bg-green-200 p-8 border border-green-700 rounded-md text-green-800 max-w-max m-auto font-normal mb-5">{response}</div>;
         setTimeout(() => {
             router.push('/');
         }, 2000);
     }
-    // if (response) {
-    //     if (response.message) {
-    //         theResponse = <div className="text-[25px] text-gray-500 text-center">{response.message ? response.message : response.error}</div>;
-    //         setTimeout(() => {
-    //             router.push('/');
-    //         }, 2000);
-    //     } else if (response.error) {
-    //         theResponse = <div className="text-[25px] text-red-500 text-center">{response.message ? response.message : response.error}</div>;
-    //     }
-    // }
 
     return(
         <>
@@ -102,7 +92,6 @@ export default function LoginForm() {
                     <Image src="/images/logo2.png" alt="logo" width="60" height="60" />
                     <p className="text-[25px]">MATHEASE</p>
                 </div>
-                {/* <h2 className="text-[23px]">Login</h2> */}
                 {/* ***********************LOGIN FORM*************************** */}
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     {error ? theError : null}

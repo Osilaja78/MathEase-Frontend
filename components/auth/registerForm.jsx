@@ -59,9 +59,9 @@ export default function RegistrationForm() {
 
     // chaeck status code if there is an error
     if (error.response && error.response.status === 400) {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>User with email already exists!</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>User with email already exists!</div>;
     } else {
-        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto'>Something went wrong: {error.message}</div>;
+        theError = <div className='bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto'>Something went wrong: {error.message}</div>;
     }
 
     // LOADING ANIMAITON *******************

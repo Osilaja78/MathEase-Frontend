@@ -66,7 +66,7 @@ export default function MathInput() {
 
 	if (error) {
 		theError = (
-		<div className="bg-red-200 p-8 border border-red-700 rounded-md text-red-800 w-max m-auto">
+		<div className="bg-red-200 p-8 border border-red-700 rounded-md text-red-800 max-w-max m-auto">
 			Something went wrong: {error.response && error.response.status === 403 ? "Token has expired! Please login to continue saving you rquestion history" : error.message}
 		</div>
 		);
@@ -94,22 +94,22 @@ export default function MathInput() {
 		{/* Input form */}
 		<form onSubmit={handleSubmit}>
 			<div className="flex border-2 border-orange-400 max-w-[450px] bg-white rounded-lg mx-auto mb-4">
-			<input
-				value={question}
-				onChange={(e) => setQuestion(e.target.value)}
-				className=" w-full sm:w-[400px] p-4 outline-none"
-				type="text"
-				placeholder="Enter what you want to calculate"
-			/>
-			<button
-				type="submit"
-				className=" mr-3 text-white bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]"
-			>
-			<Image src={equalTo} alt="equal-to"/>
+				<input
+					value={question}
+					onChange={(e) => setQuestion(e.target.value)}
+					className=" w-full sm:w-[400px] p-4 outline-none"
+					type="text"
+					placeholder="Enter what you want to calculate"
+				/>
+				<button
+					type="submit"
+					className=" mr-3 bg-orange-400 px-2 my-2 sm:mr-0 rounded-md text-[20px]"
+				>
+				<Image src={equalTo} alt="equal-to"/>
 			</button>
 			</div>
 			<i className=" text-gray-400">
-			Example &quot;solve 3x - 15 = 10&quot;
+				Example &quot;solve 3x - 15 = 10&quot;
 			</i>
 		</form>
 		<div className="answer-div bg-white py-10 px-2 border rounded-md">
